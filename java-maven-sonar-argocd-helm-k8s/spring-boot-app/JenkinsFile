@@ -57,7 +57,6 @@ pipeline {
         GIT_USER_NAME = "LakshyaGulenia"
     }
     steps {
-        checkout scm
         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
             dir('.') { // Ensure commands run from root of Git repo
                 sh '''
