@@ -6,6 +6,12 @@ pipeline {
     }
   }
   stages {
+    stage('check java version') {
+      steps {
+        sh 'java -version'
+      }
+    }
+  stages {
     stage('Checkout') {
       steps {
         sh 'echo passed'
