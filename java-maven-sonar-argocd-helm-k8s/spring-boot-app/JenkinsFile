@@ -58,15 +58,12 @@ pipeline {
     }
     steps {
         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
-            dir("${env.WORKSPACE}") { // Ensure commands run from root of Git repo
+            dir('.') { // Ensure commands run from root of Git repo
                 sh '''
-                    rm -rf .git || true
-                    find . -mindepth 1 -delete || true
+                    
                     git init
-                    ls -la .git || { echo "Git init failed!"; exit 1; }
                     git config user.email "lakshyagulenia451@gmail.com"
                     git config user.name "Lakshya Gulenia"
-                    git status
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}" 
