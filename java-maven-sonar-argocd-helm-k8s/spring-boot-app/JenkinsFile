@@ -10,7 +10,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/LakshyaGulenia/cicd-project'
+        git branch: 'main', url: 'https://github.com/LakshyaGulenia/cicd-project'
       }
     }
      stage('check java version') {
